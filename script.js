@@ -95,25 +95,26 @@ function emptySquares() {
 	return Board.filter(s => typeof s == 'number');
 }
 
-
-
-
 function checkTie() {
 	if (emptySquares().length == 0) {
 		for (var i = 0; i < pointer.length; i++) {
 			pointer[i].style.backgroundColor = "green"; 
 			pointer[i].removeEventListener('click', switchonClick, false);
 		}
-		declareWinner("Tie Game!");
+
       document.getElementById("r1").removeAttribute("disabled"); 
       document.getElementById("r2").removeAttribute("disabled"); 
       document.getElementById("r3").removeAttribute("disabled"); 
       document.getElementById("r4").removeAttribute("disabled"); 
       document.getElementById("r5").removeAttribute("disabled"); 
+	  declareWinner("Tie Game!");
 		return true;
 	}
 	return false;
 }
+
+
+
 
 function randomNumber(min, max) {  
     min = Math.ceil(min); 
