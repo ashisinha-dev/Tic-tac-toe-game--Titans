@@ -1,4 +1,5 @@
   
+  
 var Board;
 const human = 'O';
 const AIplayer = 'X';
@@ -41,7 +42,7 @@ function startGame() {
 
 
 function switchonClick(square) {
-	   if(typeof Board[square.target.id]=='number' && !checkTie()&&!checkWin(Board,AIplayer))
+	   if(!checkWin(Board,AIplayer) && typeof Board[square.target.id]=='number' )
 		{ turn(square.target.id, human)
 		  if (!checkTie()&&!checkWin(Board,human)) turn(bestSpot(), AIplayer);
 	    }
@@ -52,6 +53,7 @@ function turn(squareId, player) {
 	document.getElementById(squareId).innerText = player;
 	let gameWon = checkWin(Board, player)
 	if (gameWon) gameOver(gameWon)
+	checkTie();
 }
 
 function checkWin(board, player) {
@@ -64,6 +66,7 @@ function checkWin(board, player) {
 			break;
 		}
 	}
+
 	return gameWon;
 }
 
@@ -95,8 +98,11 @@ function emptySquares() {
 	return Board.filter(s => typeof s == 'number');
 }
 
+
+
+
 function checkTie() {
-	if (emptySquares().length == 0) {
+	if (!checkWin(Board,human) && !checkWin(Board,AIplayer) && emptySquares().length == 0) {
 		for (var i = 0; i < pointer.length; i++) {
 			pointer[i].style.backgroundColor = "green"; 
 			pointer[i].removeEventListener('click', switchonClick, false);
@@ -113,9 +119,6 @@ function checkTie() {
 	return false;
 }
 
-
-
-
 function randomNumber(min, max) {  
     min = Math.ceil(min); 
     max = Math.floor(max); 
@@ -126,13 +129,84 @@ function randomNumber(min, max) {
 function bestSpot() {
 	
 
-  if(document.getElementById("r3").checked = true)
+  if(document.getElementById("r3").checked == true)
    {
 	var available=emptySquares(Board);
 	return available[randomNumber(0,available.length-1)];
    }
- 
   
 
+  else if(document.getElementById("r5").checked == true)
+        {     
+          return minimax(Board, AIplayer).index;
+        }
+ 
+  else
+   { 
+   	 if(randomNumber(0,100)<=40)
+	   {
+	  	var available=emptySquares(Board);
+	    return available[randomNumber(0,available.length-1)];
+       }
+
+      else
+        {     
+          return minimax(Board, AIplayer).index;
+        }
+
+   }
 
 }
+
+
+function minimax(newBoard, player) {
+	var availSpots = emptySquares();
+
+	if (checkWin(newBoard, human)) {
+		return {score: -10};
+	} else if (checkWin(newBoard, AIplayer)) {
+		return {score: 10};
+	} else if (availSpots.length === 0) {
+		return {score: 0};
+	}
+	var moves = [];
+	for (var i = 0; i < availSpots.length; i++) {
+		var move = {};
+		move.index = newBoard[availSpots[i]];
+		newBoard[availSpots[i]] = player;
+
+		if (player == AIplayer) {
+			var result = minimax(newBoard, human);
+			move.score = result.score;
+		} else {
+			var result = minimax(newBoard, AIplayer);
+			move.score = result.score;
+		}
+
+		newBoard[availSpots[i]] = move.index;
+
+		moves.push(move);
+	}
+
+	var bestMove;
+	if(player === AIplayer) {
+		var bestScore = -10000;
+		for(var i = 0; i < moves.length; i++) {
+			if (moves[i].score > bestScore) {
+				bestScore = moves[i].score;
+				bestMove = i;
+			}
+		}
+	} else {
+		var bestScore = 10000;
+		for(var i = 0; i < moves.length; i++) {
+			if (moves[i].score < bestScore) {
+				bestScore = moves[i].score;
+				bestMove = i;
+			}
+		}
+	}
+
+	return moves[bestMove];
+}
+
