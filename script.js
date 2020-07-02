@@ -1,5 +1,4 @@
   
-  
 var Board;
 const human = 'O';
 const AIplayer = 'X';
@@ -143,11 +142,11 @@ function bestSpot() {
  
   else
    { 
-   	 if(randomNumber(0,100)<=40)
-	   {
+   	 if(randomNumber(0,100)<=30)
+	    {
 	  	var available=emptySquares(Board);
 	    return available[randomNumber(0,available.length-1)];
-       }
+        }
 
       else
         {     
@@ -159,7 +158,7 @@ function bestSpot() {
 }
 
 
-function minimax(newBoard, player) {
+function minimax(newBoard, player,alpha=-(Number.MIN_VALUE),beta=Number.MAX_VALUE) {
 	var availSpots = emptySquares();
 
 	if (checkWin(newBoard, human)) {
@@ -169,44 +168,56 @@ function minimax(newBoard, player) {
 	} else if (availSpots.length === 0) {
 		return {score: 0};
 	}
-	var moves = [];
-	for (var i = 0; i < availSpots.length; i++) {
-		var move = {};
-		move.index = newBoard[availSpots[i]];
-		newBoard[availSpots[i]] = player;
+	
 
-		if (player == AIplayer) {
-			var result = minimax(newBoard, human);
+  if (player == AIplayer) {
+			var moves = [];
+			var bestMove;
+			var bestScore = -10000;
+	     for (var i = 0; i < availSpots.length; i++) {
+		    var move = {};
+		    move.index = newBoard[availSpots[i]];
+		    newBoard[availSpots[i]] = player;
+			var result = minimax(newBoard, human,alpha,beta);
 			move.score = result.score;
-		} else {
-			var result = minimax(newBoard, AIplayer);
-			move.score = result.score;
-		}
-
-		newBoard[availSpots[i]] = move.index;
-
-		moves.push(move);
-	}
-
-	var bestMove;
-	if(player === AIplayer) {
-		var bestScore = -10000;
-		for(var i = 0; i < moves.length; i++) {
-			if (moves[i].score > bestScore) {
+			newBoard[availSpots[i]] = move.index;
+            moves.push(move);
+		    if (moves[i].score > bestScore) {
 				bestScore = moves[i].score;
 				bestMove = i;
+				alpha=(bestScore>alpha)?bestScore:alpha;
+					if(beta<=alpha){
+						break;
+					}
 			}
 		}
+  
+     return moves[bestMove];
+
 	} else {
-		var bestScore = 10000;
-		for(var i = 0; i < moves.length; i++) {
-			if (moves[i].score < bestScore) {
+			var bestMove; 
+			var moves = [];
+			var bestScore = 10000;
+	     for (var i = 0; i < availSpots.length; i++) {
+		       var move = {};
+		       move.index = newBoard[availSpots[i]];
+		       newBoard[availSpots[i]] = player;
+			   var result = minimax(newBoard, AIplayer,alpha,beta);
+			   move.score = result.score;
+			   newBoard[availSpots[i]] = move.index;
+               moves.push(move);
+		    if (moves[i].score < bestScore) {
 				bestScore = moves[i].score;
 				bestMove = i;
+				beta=(bestScore<beta)?bestScore:beta;
+				if(beta<=alpha){
+					break;
+				}
 			}
 		}
+	
+	 return moves[bestMove];	
 	}
 
-	return moves[bestMove];
 }
-
+	
