@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -15,7 +16,7 @@
   	}
     
     #btnOne
-    {   position:fixed;
+    {   position:absolute;
         left:50%;
         top:75%;
     }
@@ -256,7 +257,7 @@
   display: inline-block;
   position: relative;
   bottom:385px;                          
-  left:360px;
+  left:160px;
   
   padding-left: 35px;
   margin-bottom: 12px;
@@ -325,7 +326,7 @@
 
 </head>
 
-<body style="background-color:#f4c2c2 ">
+<body scroll="no" style="overflow: hidden" >
 
 
 	<table>
@@ -385,14 +386,14 @@
     <input type="radio" id="r2" name="radio">Computer
     <span class="checkmark"></span>
     </label>
-    <div id="bottom3"><h1>Do you want to learn to play first?
+    <div id="bottom3"><h1>Hints for next move
    </h1></div> 
    <label class="container3">
-    <input onclick="javascript:yesnoCheck();" type="radio" id="r8" checked="checked" name="radio3">Yes
+    <input onclick="javascript:yesnoCheck();" type="radio" id="r8" checked="checked" name="radio3">Enable
     <span class="checkmark3"></span>
     </label>
     <label class="container3">
-    <input onclick="javascript:yesnoCheck();" type="radio" id="r9" name="radio3">No
+    <input onclick="javascript:yesnoCheck();" type="radio" id="r9" name="radio3">Disable
     <span class="checkmark3"></span>
     </label>
 </div>
