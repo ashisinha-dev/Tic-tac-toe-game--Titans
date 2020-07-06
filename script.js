@@ -1,4 +1,3 @@
-  
 var Board;
 const human = 'O';
 const AIplayer = 'X';
@@ -13,8 +12,28 @@ const winningcombinations = [
 	[6, 4, 2]
 ]
 
+function Check()
+{
+	 if (document.getElementById('r7').checked) {
+        document.getElementById('ifComp').style.visibility = 'visible';
+    }
+    else{ document.getElementById('ifComp').style.visibility = 'hidden';
+          document.getElementById('ifNo').style.visibility = 'hidden';
+          document.getElementById('r9').checked=false;
+         }
+}
+
+function yesnoCheck()
+{
+	 if (document.getElementById('r7').checked && document.getElementById('r9').checked) {
+        document.getElementById('ifNo').style.visibility = 'visible';
+    }
+    else document.getElementById('ifNo').style.visibility = 'hidden';
+}
+
 const pointer = document.querySelectorAll('.cell');
 startGame();
+
 
 function startGame() {
 	document.getElementById("r1").disabled = true;
