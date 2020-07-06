@@ -1,6 +1,9 @@
+  
 var Board;
 const human = 'O';
 const AIplayer = 'X';
+const huPlayer1 = 'O';
+const huPlayer2 = 'X';
 const winningcombinations = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -20,6 +23,7 @@ function Check()
     else{ document.getElementById('ifComp').style.visibility = 'hidden';
           document.getElementById('ifNo').style.visibility = 'hidden';
           document.getElementById('r9').checked=false;
+          document.getElementById('r8').checked=true;
          }
 }
 
@@ -32,15 +36,29 @@ function yesnoCheck()
 }
 
 const pointer = document.querySelectorAll('.cell');
+let circleTurn;
 startGame();
 
 
 function startGame() {
+   if(document.getElementById("r2").checked == true && document.getElementById("r6").checked == true)
+   { 
+      document.getElementById("r2").checked = false;
+   }
+
+   if(document.getElementById("r6").checked == true)
+   {
+   	 circleTurn = false;
+   }
 	document.getElementById("r1").disabled = true;
 	document.getElementById("r2").disabled = true;
 	document.getElementById("r3").disabled = true;
 	document.getElementById("r4").disabled = true;
 	document.getElementById("r5").disabled = true;
+	document.getElementById("r6").disabled = true;
+	document.getElementById("r7").disabled = true;
+	document.getElementById("r8").disabled = true;
+	document.getElementById("r9").disabled = true;
 	document.querySelector(".endgame").style.display = "none";
 	Board = Array.from(Array(9).keys());
 	for (var i = 0; i < pointer.length; i++) {
@@ -60,7 +78,21 @@ function startGame() {
 
 
 function switchonClick(square) {
-	   if(!checkWin(Board,AIplayer) && typeof Board[square.target.id]=='number' )
+	 if(document.getElementById("r6").checked == true)
+        { 
+           if (typeof Board[square.target.id] == 'number') {
+                 const player = circleTurn ? huPlayer1 : huPlayer2;
+                 turn(square.target.id, player)
+                 if (!checkTie()) {circleTurn = !circleTurn}
+                  }
+
+
+        }
+
+
+
+
+	else if(!checkWin(Board,AIplayer) && typeof Board[square.target.id]=='number' )
 		{ turn(square.target.id, human)
 		  if (!checkTie()&&!checkWin(Board,human)) turn(bestSpot(), AIplayer);
 	    }
@@ -97,13 +129,25 @@ function gameOver(gameWon) {
 		pointer[i].removeEventListener('click', switchonClick, false);
 	}
   
+   if(document.getElementById("r6").checked == true)
+         {
+         	declareWinner(gameWon.player == huPlayer1 ? "O wins!" : "X wins!");
+         }
 
-  declareWinner(gameWon.player == human ? "You win!" : "You lose.");
+    else {
+  	      declareWinner(gameWon.player == human ? "You win!" : "You lose.");
+         }
       document.getElementById("r1").removeAttribute("disabled"); 
       document.getElementById("r2").removeAttribute("disabled"); 
       document.getElementById("r3").removeAttribute("disabled"); 
       document.getElementById("r4").removeAttribute("disabled"); 
-      document.getElementById("r5").removeAttribute("disabled");   
+      document.getElementById("r5").removeAttribute("disabled");
+       document.getElementById("r6").removeAttribute("disabled");
+      document.getElementById("r7").removeAttribute("disabled");
+      document.getElementById("r8").removeAttribute("disabled");
+     document.getElementById("r9").removeAttribute("disabled");
+    
+
 	
 }
 
@@ -130,7 +174,15 @@ function checkTie() {
       document.getElementById("r2").removeAttribute("disabled"); 
       document.getElementById("r3").removeAttribute("disabled"); 
       document.getElementById("r4").removeAttribute("disabled"); 
-      document.getElementById("r5").removeAttribute("disabled"); 
+      document.getElementById("r5").removeAttribute("disabled");
+      document.getElementById("r6").removeAttribute("disabled");
+      document.getElementById("r7").removeAttribute("disabled");
+      document.getElementById("r8").removeAttribute("disabled");
+     document.getElementById("r9").removeAttribute("disabled");
+    
+    
+    
+    
 	  declareWinner("Tie Game!");
 		return true;
 	}
@@ -240,3 +292,5 @@ function minimax(newBoard, player,alpha=-(Number.MIN_VALUE),beta=Number.MAX_VALU
 
 }
 	
+
+
