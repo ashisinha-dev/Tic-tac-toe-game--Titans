@@ -232,7 +232,7 @@ function bestSpot() {
    }
   
 
-  else if(document.getElementById("r5").checked == true)
+  else if(document.getElementById("r8").checked == true || document.getElementById("r5").checked == true)
         {     
           return minimax(Board, AIplayer).index;
         }
