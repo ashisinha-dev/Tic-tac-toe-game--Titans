@@ -82,7 +82,7 @@ function startGame() {
 
 
 function switchonClick(square) {
-	 if(document.getElementById("r8").checked == false && document.getElementById("r6").checked == true)
+	 if( document.getElementById("r6").checked == true)
         { 
            if (typeof Board[square.target.id] == 'number') {
                  const player = circleTurn ? huPlayer1 : huPlayer2;
