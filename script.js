@@ -73,6 +73,10 @@ function startGame() {
 	  document.getElementById(p).innerText = AIplayer;
     }
  
+  if(document.getElementById("r8").checked == true && document.getElementById("r2").checked == true)
+    {
+    	 document.getElementById(minimax(Board, human).index).style.backgroundColor ="#fff70a";
+    }
 }
  
 
@@ -88,12 +92,22 @@ function switchonClick(square) {
 
 
         }
-
-
-
+	
+	
+   else if(document.getElementById("r8").checked == true)
+       {   
+           if(!checkWin(Board, AIplayer) && typeof Board[square.target.id]=='number' )
+		     {  pointer[minimax(Board, human).index].style.removeProperty('background-color');
+		     	turn(square.target.id, human);
+		        if (!checkWin(Board, human)&&!checkTie())hint(turn);
+		         
+		        
+                      }
+	 
+         }
 
 	else if(!checkWin(Board,AIplayer) && typeof Board[square.target.id]=='number' )
-		{ turn(square.target.id, human)
+	    { turn(square.target.id, human)
 		  if (!checkTie()&&!checkWin(Board,human)) turn(bestSpot(), AIplayer);
 	    }
 }
@@ -105,6 +119,18 @@ function turn(squareId, player) {
 	if (gameWon) gameOver(gameWon)
 	checkTie();
 }
+
+function hint(callback)
+{   
+	callback(bestSpot(), AIplayer);
+	
+document.getElementById(minimax(Board, human).index).style.backgroundColor ="#fff70a";
+	
+}
+
+
+
+
 
 function checkWin(board, player) {
 	let plays = board.reduce((a, e, i) => 
