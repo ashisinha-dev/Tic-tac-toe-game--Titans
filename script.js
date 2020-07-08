@@ -99,7 +99,7 @@ function switchonClick(square) {
            if(!checkWin(Board, AIplayer) && typeof Board[square.target.id]=='number' )
 		     {  pointer[minimax(Board, human).index].style.removeProperty('background-color');
 		     	turn(square.target.id, human);
-		        if (!checkWin(Board, human)&&!checkTie())hint();
+		        if (!checkWin(Board, human)&&!checkTie())hint(turn);
 		         
 		        
                       }
@@ -120,9 +120,9 @@ function turn(squareId, player) {
 	checkTie();
 }
 
-function hint()
+function hint(callback)
 {   
-	turn(bestSpot(), AIplayer);
+	callback(bestSpot(), AIplayer);
 	
 document.getElementById(minimax(Board, human).index).style.backgroundColor ="#fff70a";
 	
