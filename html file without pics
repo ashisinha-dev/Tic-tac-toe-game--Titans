@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <style>
+  	button
+  	{   font-size:30px;
+        padding:10px;
+        border-radius:10px;
+        margin:20px;
+        color:blue;
+        background-color:rgb(255,165,0);
+  	}
+    
+  @media screen and (min-width: 1200px) {
+    #bottom4{
+               position: absolute;
+               top:15px;
+               left:120px;
+            }
+    #bottom3{ 
+                position:absolute;                  
+                top:340px;                          
+                left:90px;                          
+           }  
+    #bottom{ 
+                position:absolute;                  
+                top:435px;                          
+                left:90px;                          
+           } 
+
+    #bottom1{ 
+                position:absolute;                  
+                top:105px;                          
+                left:90px;                          
+           } 
+
+    #bottom2{ 
+                position:absolute;                  
+                top:240px;                          
+                left:90px;                          
+           }       
+    #btnOne
+    {   position:absolute;
+        left:870px;
+        top:435px;
+    }
+ }
+ @media screen and  (max-width: 1199px)  and  (min-width: 768px) {
+    #bottom4{
+               position: absolute;
+               top:15px;
+               left:70px;
+            }
+    #bottom3{ 
+                position:absolute;                  
+                top:340px;                          
+                left:60px;                          
+           } 
+    #bottom{ 
+                position:absolute;                  
+                top:435px;                          
+                left:60px;                          
+           } 
+
+    #bottom1{ 
+                position:absolute;                  
+                top:105px;                          
+                left:60px;                          
+           } 
+
+    #bottom2{ 
+                position:absolute;                  
+                top:240px;                          
+                left:60px;                          
+           } 
+    }    
+  @media screen and  (max-width: 1199px)  and  (min-width: 900px){     
+    #btnOne
+    {   position:absolute;
+        left:550px;
+        top:435px;
+    }
+ }
+ @media screen and  (max-width: 899px)  and  (min-width: 768px){     
+    #btnOne
+    {   position:absolute;
+        left:400px;
+        top:435px;
+    }
+ }
+ @media screen and  (max-width: 767px)  and  (min-width: 576px) {
+    #bottom4{
+               position: absolute;
+               top:15px;
+               left:70px;
+               font-size: 30px;
+            }
+    #bottom3{ 
+                position:absolute;                  
+                top:340px;                          
+                left:60px;  
+                font-size: 15px;                        
+           } 
+    #bottom{ 
+                position:absolute;                  
+                top:435px;                          
+                left:60px;  
+                font-size: 15px;                         
+           } 
+
+    #bottom1{ 
+                position:absolute;                  
+                top:105px;                          
+                left:60px;  
+                font-size: 15px;                        
+           } 
+
+    #bottom2{ 
+                position:absolute;                  
+                top:240px;                          
+                left:60px;  
+                font-size: 15px;                        
+           } 
+    #btnOne
+    {   position:absolute;
+        left:300px;
+        top:435px;
+        font-size: 25px; 
+    }
+ }
+ @media screen and  (max-width: 576px) {
+    #bottom4{
+               position: absolute;
+               top:10px;
+               left:20px;
+               font-size: 25px;
+            }     
+    #bottom3{ 
+                position:absolute;                  
+                top:320px;                          
+                left:20px; 
+                font-size: 15px;                         
+           }  
+    #bottom{ 
+                position:absolute;                  
+                top:415px;                          
+                left:20px; 
+                font-size: 15px;                         
+           } 
+
+    #bottom1{ 
+                position:absolute;                  
+                top:85px;                          
+                left:20px; 
+                font-size: 15px;                          
+           } 
+
+    #bottom2{ 
+                position:absolute;                  
+                top:225px;                          
+                left:20px; 
+                font-size: 15px;                         
+           }  
+    #btnOne
+    {   position:absolute;
+        left:150px;
+        top:530px;
+        font-size: 20px;
+        padding:5px;
+        border-radius:10px;
+        margin:10px;
+        color:blue;
+        background-color:rgb(255,165,0);
+    } 
+ }
+
+   /* The container */
+.container {
+  display: block;
+position: relative;
+ top: 215px;
+  left: 100px;
+  
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  background-color: #FFA500;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a blue background color */
+.container:hover input ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.container1 {
+  display: block;
+position: relative;
+ top: 280px;
+  left: 100px;
+  
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+
+
+/* Hide the browser's default radio button */
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  
+}
+
+/* Create a custom radio button */
+.checkmark1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  background-color: #FFA500;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a blue background color */
+.container1:hover input ~ .checkmark1 {
+  background-color: #2196F3;
+}
+
+/* When the radio button is checked, add a blue background */
+.container1 input:checked ~ .checkmark1 {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark1:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container1 input:checked ~ .checkmark1:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container1 .checkmark1:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.container2 {
+  display: block;
+position: relative;
+ top: 170px;
+  left: 100px;
+  
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+
+
+/* Hide the browser's default radio button */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+
+}
+
+/* Create a custom radio button */
+.checkmark2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  background-color: #FFA500;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a blue background color */
+.container2:hover input ~ .checkmark2 {
+  background-color: #2196F3;
+}
+
+/* When the radio button is checked, add a blue background */
+.container2 input:checked ~ .checkmark2 {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container2 input:checked ~ .checkmark2:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container2 .checkmark2:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.container3 {
+  display: block;
+position: relative;
+ top: 250px;
+  left: 100px;
+  
+  padding-left: 35px;
+  margin-bottom: 12px;
+  
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+
+
+/* Hide the browser's default radio button */
+.container3 input {
+  position: absolute;
+  opacity: 0;
+
+}
+
+/* Create a custom radio button */
+.checkmark3 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  background-color: #FFA500;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a blue background color */
+.container3:hover input ~ .checkmark3 {
+  background-color: #2196F3;
+}
+
+/* When the radio button is checked, add a blue background */
+.container3 input:checked ~ .checkmark3 {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark3:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container3 input:checked ~ .checkmark3:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container3 .checkmark3:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+   </style>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+	<table>
+    <tr>
+      <td class="cell" id="2" border-color="#FFF8DC"></td>
+      <td class="cell" id="0" border-color="#FFF8DC"></td>
+      <td class="cell" id="1" border-color="#FFF8DC"></td>
+    </tr>
+			<td class="cell" id="3"></td>
+			<td class="cell" id="4"></td>
+			<td class="cell" id="5"></td>
+		</tr>
+		<tr>
+			<td class="cell" id="6"></td>
+			<td class="cell" id="7"></td>
+			<td class="cell" id="8"></td>
+		</tr>
+	</table>
+	<div class="endgame">
+		<div class="text"></div>
+	</div>
+
+	<button id="btnOne"onClick="startGame()">Start game / Replay</button>
+	
+  <script src="script.js"></script>
+   
+   <div id="bottom1"><h1>Co-Player</h1></div> 
+   <div id="bottom4"><h1 style="color:#8B0000 ;font-size:50px;"><B><i>WELCOME !!</i></B></h1></div> 
+<label class="container2">
+  <input onclick="javascript:Check();" type="radio" id="r6" checked="checked" name="radio2">Friend
+  <span class="checkmark2"></span>
+
+</label>
+<label class="container2">
+  <input onclick="javascript:Check();" type="radio" id="r7" name="radio2">Computer
+  <span class="checkmark2"></span>
+</label>
+<div id="ifComp" style="visibility:hidden">
+    <div id="bottom2"><h1>Select first player</h1></div>
+    <label class="container">
+    <input type="radio" id="r1" checked="checked" name="radio">Human
+    <span class="checkmark"></span>
+    </label>
+    <label class="container">
+    <input type="radio" id="r2" name="radio">Computer
+    <span class="checkmark"></span>
+    </label>
+    <div id="bottom3"><h1>Hints for next move
+   </h1></div> 
+   <label class="container3">
+    <input onclick="javascript:yesnoCheck();" type="radio" id="r8" checked="checked" name="radio3">Enable
+    <span class="checkmark3"></span>
+    </label>
+    <label class="container3">
+    <input onclick="javascript:yesnoCheck();" type="radio" id="r9" name="radio3">Disable
+    <span class="checkmark3"></span>
+    </label>
+</div>
+    <div id="ifNo" style="visibility:hidden">
+         <div id="bottom"><h1>Select difficulty level
+         </h1></div>
+            <label class="container1">
+            <input class="radio-inline" type="radio" id="r3" checked="checked" name="radio1">Easy
+            <span class="checkmark1"></span>
+            </label>
+            <label class="container1">
+            <input class="radio-inline" type="radio" id="r4" name="radio1">Medium
+            <span class="checkmark1"></span>
+            </label>
+            <label class="container1">
+            <input class="radio-inline" type="radio" id="r5" name="radio1">Hard
+            <span class="checkmark1"></span>
+            </label>
+
+    </div>
+
+
+
+  
+ 
+
+</body>
+</html>
