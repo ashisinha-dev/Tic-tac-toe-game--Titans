@@ -1,0 +1,116 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: linear-gradient( -45deg, #23D5AB,#23A6D5, #ec347b, #EE7752);
+    background-size: 400% 400%;
+    overflow-x: hidden;
+    animation: change 6s ease-in-out infinite;
+}
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border: 10px solid #0000A0;
+}
+
+
+
+.highlight td {
+    border: 1px solid orange;
+}
+
+.loc {
+    margin-left: 80%;
+    margin-right: 20%;
+    margin-top: 0px;
+}
+
+td {
+    border: 4px solid #f0e9e9;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 70px;
+    cursor: pointer;
+}
+
+
+table {
+    border-collapse: collapse;
+    position: absolute;
+    left: 25%;
+    margin-left: -155px;
+    top: 100px;
+}
+
+    table tr:first-child td {
+        border-top: 0;
+    }
+
+    table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    table tr td:first-child {
+        border-left: 0;
+    }
+
+    table tr td:last-child {
+        border-right: 0;
+    }
+
+.endgame {
+    display: none;
+    width: 200px;
+    top: 190px;
+    background-color: rgba(205,133,63, 0.8);
+    position: absolute;
+    left: 25%;
+    margin-left: -100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 2em;
+}
+
+@media screen and (max-width: 799px) and (min-width: 290px) {
+    table {
+        left: 55%;
+        top: 820px;
+    }
+
+    .endgame {
+        left: 55%;
+        top: 910px;
+    }
+}
