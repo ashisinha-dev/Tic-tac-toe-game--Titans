@@ -252,7 +252,7 @@ function hint(callback) {
 
 
 function checkWin(board, player) {
-    if (document.getElementById('r12').checked) {
+     
         
         //to find all the places in the board that have already been played in by this player:
      /*The reduce method goes through every element in the board array and
@@ -273,7 +273,7 @@ function checkWin(board, player) {
         }
 
         return gameWon;
-    }
+    
 
   
 }
