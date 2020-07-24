@@ -1,8 +1,7 @@
+//When user clicks on start game(for 4x4 board)the code ultimately comes here:
 
 function startGame2() {
    
-    
-  
     document.querySelector(".endgame").style.display = "none";
     if (document.getElementById("r2").checked == true && document.getElementById("r6").checked == true) {
         document.getElementById("r2").checked = false;
@@ -44,7 +43,7 @@ function startGame2() {
 
 
 }
-
+//On clicking on the board cells,code comes here:
 function switchonClick1(square) {
     if (document.getElementById("r6").checked == true) {
         if (typeof Board[square.target.id] == 'number') {
@@ -85,12 +84,14 @@ function switchonClick1(square) {
 
     }
 }
-
+//To change the board array and display on the game board when any player takes its turn:
 function turn1(squareId, player) {
     Board[squareId] = player;
     document.getElementById(squareId).innerText = player;
 }
 
+
+//To check if there has been a win,a loss or a tie:
 function checkStatus() {
     // all possible winning combinations in Tic Tac Toe
     let checks = [
