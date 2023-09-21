@@ -6,3 +6,4 @@
 * Hints can also be enabled.
 * When user disables hints,the different difficulty levels are displayed.
 * User also has an option of playing on a 4x4 board with a friend.
+* Deployed the web-app here: [ashiabcd.github.io](ashiabcd.github.io)
